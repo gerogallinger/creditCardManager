@@ -1,39 +1,30 @@
 import React, { Fragment, useState, filter } from 'react';
 import uniqid from 'uniqid'
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Button, TextField } from '@mui/material';
-import { Grid } from '@mui/material';
-import { OutlinedInput, Card } from '@mui/material';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 
 
 function Registrador() {
 
-    // const theme = createTheme({
-    //     status: {
-    //         danger: orange[500],
-    //     },
-    // });
+
 
     const [listaCuotas, setListaCuotas] = useState([])
-    const [nombreCuota, setNombreCuota] = useState([])
-    const [montoCuota, setMontoCuota] = useState([])
-    const [montoCompra, setMontoCompra] = useState([])
-    const [fechaCompra, setFechaCompra] = useState([])
+    const [nombreCuota, setNombreCuota] = useState('')
+    const [montoCuota, setMontoCuota] = useState('')
+    const [montoCompra, setMontoCompra] = useState('')
+    const [fechaCompra, setFechaCompra] = useState(null)
 
-    const [cantCuotas, setCantidadCuotas] = useState([])
+    const [cantCuotas, setCantidadCuotas] = useState('')
     const [modoEdicion, setModoEdicion] = useState(false)
     const [id, setId] = useState('')
     const [error, setError] = useState(null)
-    // const [categoria, setCategoria] = useState('Suscripciones', 'Supermercado', 'Transporte', 'Ahorros')
+
     const [categoria, setCategoria] = useState('')
 
     const addCuota = (e) => {
         e.preventDefault()
+
+        console.log(nombreCuota, cantCuotas, montoCompra, fechaCompra, categoria);
+
         if (!(nombreCuota.trim) && (!montoCuota.trim)) {
             console.log('Campo nombre vacio');
             setError('Tiene que completar todos los campos')
@@ -78,145 +69,220 @@ function Registrador() {
         setCategoria(event.target.value);
     };
 
+    const people = [
+        {
+            name: 'Leslie Alexander',
+            email: 'leslie.alexander@example.com',
+            role: 'Co-Founder / CEO',
+            imageUrl:
+                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            lastSeen: '3h ago',
+            lastSeenDateTime: '2023-01-23T13:23Z',
+        },
+        {
+            name: 'Michael Foster',
+            email: 'michael.foster@example.com',
+            role: 'Co-Founder / CTO',
+            imageUrl:
+                'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            lastSeen: '3h ago',
+            lastSeenDateTime: '2023-01-23T13:23Z',
+        },
+        {
+            name: 'Dries Vincent',
+            email: 'dries.vincent@example.com',
+            role: 'Business Relations',
+            imageUrl:
+                'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            lastSeen: null,
+        },
+        {
+            name: 'Lindsay Walton',
+            email: 'lindsay.walton@example.com',
+            role: 'Front-end Developer',
+            imageUrl:
+                'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            lastSeen: '3h ago',
+            lastSeenDateTime: '2023-01-23T13:23Z',
+        },
+        {
+            name: 'Courtney Henry',
+            email: 'courtney.henry@example.com',
+            role: 'Designer',
+            imageUrl:
+                'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            lastSeen: '3h ago',
+            lastSeenDateTime: '2023-01-23T13:23Z',
+        },
+        {
+            name: 'Tom Cook',
+            email: 'tom.cook@example.com',
+            role: 'Director of Product',
+            imageUrl:
+                'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            lastSeen: null,
+        },
+    ]
+
 
     return (
         <Fragment>
-            <div className="container">
 
-                <h1>Registra tus gastos!</h1>
-                <div className="row">
-                    {/* SECTION: LISTA DE CUOTAS */}
-                    <div className="col">
-                        <h2 className='h1-center'>
-                            Tus cuotas a pagar
-                        </h2>
-                        <ul className='item-group'>
+            <div class="mt-4" >
 
+                <h1 class="text-center text-3xl">Registra tus gastos!</h1>
+            </div>
 
-                            <Grid container direction="column" spacing={2}>
-                                Tabla de gastos
-                                {
-                                    listaCuotas.map(item =>
-                                        <Grid2>
-                                            <Card key={item.id} className='list-group-item list-group-item-warning'>
-                                                {item.nombre}. $ {item.monto}. Cant Cuota {item.cantCuotas}
-                                                <Button
-                                                    color='warning'
-                                                    onClick={() => { deleteCuota(item.id) }}
-                                                >
-                                                    Borrar
-                                                </Button>
-                                                <Button
-                                                    color='info'
-                                                    onClick={() => { editCuota(item) }}
-                                                >Editar</Button>
-                                            </Card>
-                                        </Grid2>
-                                    )
+            <div class="grid grid-cols-2 gap-4">
+                <div class="grid m-5 border-4 border-black p-4 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-center">
+                        Tus cuotas por pagar
+                    </h2>
+                    <div class="container " >
+                        <ul class="item-group mx-auto">
 
-                                }
-                            </Grid>
-                        </ul>
+                            {
+                                listaCuotas.map(item =>
+                                    <div class="p-2">
+                                        <li class="mt-5 rounded-2xl border-2 p-3.5 hover:bg-slate-200">
 
-                    </div>
-                    {/* SECTION: FORMULARIO DE CUOTAS */}
-                    <div className="col">
-                        <h2>
-                            Carga los datos de tu cuota
-                        </h2>
-                        {/* Formulario con campos para cargar cuotas */}
-                        <form onSubmit={modoEdicion ? editarCuota : addCuota} className='form-group'>
+                                            <div class="flex flex-row">
 
+                                                <div class="basis-3/4">
 
-                            <Grid container direction="column" spacing={2}>
-                                <Grid item>
-                                    <TextField
-                                        label="Nombre compra"
-                                        type="text"
-                                        value={nombreCuota}
-                                        fullWidth
-                                        onChange={(e) => { setNombreCuota(e.target.value) }}
-                                    />
-                                </Grid>
-                                <Grid item>
-                                    <TextField
-                                        label="Monto Compra"
-                                        type="number"
-                                        value={montoCompra}
-                                        fullWidth
-                                        onChange={(e) => { setMontoCompra(e.target.value) }}
-                                    />
-                                </Grid>
-                            </Grid>
-                            <Grid>
+                                                    <h3>Compra</h3>
+                                                    <p>Nombre: {item.nombre}</p>
+                                                    <p>Monto: {item.monto}</p>
+                                                    <p>Cantidad Cuotas: {item.cantCuotas}</p>
+                                                    <p>Fecha de Compra: {item.fechaCompra}</p>
+                                                    <p>Categoria: {item.categoria}</p>
 
-                                <InputLabel id="demo-simple-select-autowidth-label">Cantidad de Cuotas</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-autowidth-label"
-                                    id="demo-simple-select-autowidth"
-                                    value={cantCuotas}
-                                    type='number'
-                                    onChange={(e) => { setCantidadCuotas(e.target.value) }}
-                                    fullWidth
-                                    label="Cantidad Cuotas">
+                                                </div>
 
-                                    <MenuItem value="">
-                                        <em>Seleccione una opcion</em>
-                                    </MenuItem>
-                                    <MenuItem value={10}>1</MenuItem>
-                                    <MenuItem value={21}>3</MenuItem>
-                                    <MenuItem value={22}>6</MenuItem>
-                                    <MenuItem value={23}>9</MenuItem>
-                                    <MenuItem value={24}>12</MenuItem>
-                                </Select>
-                            </Grid>
-                            <Grid>
+                                                <div class="flex flex-col basis-1/4 place-content-center text-xl">
 
-                                <InputLabel id="demo-simple-select-autowidth-label">Categoria</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-autowidth-label"
-                                    id="demo-simple-select-autowidth"
-                                    value={categoria}
-                                    onChange={handleChange}
-                                    fullWidth
-                                    label="Categoria"
-                                >
-                                    <MenuItem value="">
-                                        <em>Seleccione una opcion</em>
-                                    </MenuItem>
-                                    <MenuItem value={10}>Supermercado</MenuItem>
-                                    <MenuItem value={21}>Tecnologia</MenuItem>
-                                    <MenuItem value={22}>Hogar</MenuItem>
-                                </Select>
-                            </Grid>
-
-
-                            <input className='form-control mb-3'
-                                placeholder='Fecha Cuota'
-                                type="date"
-                                value={fechaCompra}
-                                onChange={
-                                    (e) => { setFechaCompra(e.target.value) }
-                                } />
-                            <OutlinedInput
-                                fullWidth
-                                color='info'
-                                type="submit"
-                                value={modoEdicion ? 'Editar Datos' : 'Registrar Cuota'} />
-                        </form>
-                        {
-                            error != null ? (
-                                <div className='alert alert-danger'>
-                                    {error}
-                                </div>
-                            ) :
-                                (
-                                    <div> </div>
-
+                                                    <button
+                                                        type='button'
+                                                        class="m-2 rounded-full border-2 border-slate-500/100 hover:bg-sky-300 "
+                                                        color='warning'
+                                                        onClick={() => { deleteCuota(item.id) }}
+                                                    >
+                                                        Borrar
+                                                    </button>
+                                                    <button
+                                                        class="m-2 rounded-full border-2 border-slate-500/100 hover:bg-sky-300"
+                                                        type='button'
+                                                        color='info'
+                                                        onClick={() => { editCuota(item) }}
+                                                    >Editar</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
                                 )
-                        }
+
+                            }
+                        </ul>
                     </div>
                 </div>
+                <div class="grid m-5 border-4 border-black p-4 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-center">
+                        Carga los datos de tu cuota
+                    </h2>
+                    <form onSubmit={modoEdicion ? editarCuota : addCuota} class="space-y-4">
+                        <div class="flex flex-col space-y-2">
+                            <label for="nombreCompra" class="font-medium">Nombre compra</label>
+                            <input
+                                id="nombreCompra"
+                                type="text"
+                                value={nombreCuota}
+                                class="border p-2 rounded"
+                                onChange={(e) => { setNombreCuota(e.target.value) }}
+                            />
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <label for="montoCompra" class="font-medium">Monto Compra</label>
+                            <input
+                                id="montoCompra"
+                                type="number"
+                                value={montoCompra}
+                                class="border p-2 rounded"
+                                onChange={(e) => { setMontoCompra(e.target.value) }}
+                            />
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <label for="cantCuotas" class="font-medium">Cantidad de Cuotas</label>
+                            <select
+                                id="cantCuotas"
+                                name="cant-cuotas"
+                                class="required border border-black"
+                                value={cantCuotas}
+                                onChange={(e) => setCantidadCuotas(e.target.value)}
+                            >
+
+                                <option defaultChecked>
+                                    <p class="text-sm italic">Seleccione una opcion</p>
+                                </option>
+                                <option>1</option>
+                                <option>3</option>
+                                <option>6</option>
+                                <option>9</option>
+                                <option>12</option>
+
+                            </select>
+
+                        </div>
+                        <div class="flex flex-col space-y-2">
+
+                            <label for="categoria" class="font-medium">Categoria</label>
+                            <select
+                                id="categoria"
+                                name="category"
+                                class="required border border-black"
+                                value={categoria}
+                                onChange={(e) => setCategoria(e.target.value)}
+                            >
+
+                                <option defaultChecked>
+                                    <p class="text-sm">Seleccione una opcion</p>
+                                </option>
+                                <option>Tecnologia</option>
+                                <option>Electrodomesticos</option>
+                                <option>Vacaciones</option>
+                                <option>Transporte</option>
+                                <option>Oseo</option>
+                                <option>Ropa y Calzado</option>
+                            </select>
+
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <label for="fechaCompra" class="font-medium">Fecha Cuota</label>
+                            <input
+                                id="fechaCompra"
+                                type="date"
+                                value={fechaCompra}
+                                class="border p-2 rounded"
+                                onChange={(e) => { setFechaCompra(e.target.value) }}
+                            />
+                        </div>
+                        <input
+                            class="bg-blue-500 text-white p-4 rounded w-full"
+                            type="submit"
+                            value={modoEdicion ? 'Editar Datos' : 'Registrar Cuota'}
+                        />
+                    </form>
+                    {
+                        error != null ? (
+                            <div class='text-red-500 mt-4'>
+                                {error}
+                            </div>
+                        ) :
+                            (
+                                <div> </div>
+                            )
+                    }
+                </div>
+
             </div>
 
         </Fragment>

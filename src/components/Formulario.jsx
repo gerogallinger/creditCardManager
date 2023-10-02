@@ -15,16 +15,16 @@ function Formulario() {
 
     return (
         <div>
-            <div className='container'>
+            <div class=''>
 
-                <form onSubmit={Validar} className='form-group'>
-                    <input className='form-control mb-3' placeholder='Introduce nombre ' type="text" onChange={
+                <form onSubmit={Validar} class=''>
+                    <input class='' placeholder='Introduce nombre ' type="text" onChange={
                         (e) => { setNombre(e.target.value) }
                     } />
-                    <input className='form-control mb-3' placeholder='Introduce la edad' type="number" onChange={
+                    <input class='' placeholder='Introduce la edad' type="number" onChange={
                         (e) => { setEdad(e.target.value) }
                     } />
-                    <input className='btn btn-info mb-3' type="submit" />
+                    <input class='' type="submit" />
                 </form>
             </div>
 
