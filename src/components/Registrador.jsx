@@ -20,16 +20,28 @@ function Registrador() {
 
     const [categoria, setCategoria] = useState('')
 
+    function validarCampos(objeto) {
+        //validamos los campos del formulario y devolve
+        for (let propiedad in objeto) {
+            if (typeof objeto[propiedad] === 'string' && !objeto[propiedad].trim()) {
+                console.log(`El campo ${propiedad} está vacío`);
+                setError(`El campo ${propiedad} está vacío`);
+                return false;
+            }
+        }
+        return true;
+    }
+
     const addCuota = (e) => {
         e.preventDefault()
 
         console.log(nombreCuota, cantCuotas, montoCompra, fechaCompra, categoria);
 
-        if (!(nombreCuota.trim) && (!montoCuota.trim)) {
-            console.log('Campo nombre vacio');
-            setError('Tiene que completar todos los campos')
-            return //para que no haga nada
-        }
+        // if (!(nombreCuota.trim) && (!montoCuota.trim)) {
+        //     console.log('Campo nombre vacio');
+        //     setError('Tiene que completar todos los campos')
+        //     return //para que no haga nada
+        // }
         const nuevaCuota = {
             id: uniqid(),
             nombre: nombreCuota,
@@ -38,6 +50,10 @@ function Registrador() {
             fechaCompra: fechaCompra,
             categoria: categoria
         }
+        if (!validarCampos(nuevaCuota)) {
+            return; // No hacer nada si algún campo está vacío
+        }
+
         setListaCuotas([...listaCuotas, nuevaCuota])
         setNombreCuota('')
         setMontoCompra('')
@@ -66,9 +82,6 @@ function Registrador() {
         );
         setListaCuotas(auxArray);
         setModoEdicion(false); // Desactiva el modo de edición después de editar
-    };
-    const handleChange = (event) => {
-        setCategoria(event.target.value);
     };
 
     return (

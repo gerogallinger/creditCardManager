@@ -16,7 +16,7 @@ import {
   Routes
 } from 'react-router-dom'
 import SignUp from './components/SignUp';
-
+import ListaOpciones from './components/listaOpciones';
 
 
 function App() {
@@ -28,6 +28,7 @@ function App() {
         <Route path="/inicio" Component={Inicio} />
 
         <Route path="/registrador" Component={Registrador} />
+        <Route path="/option-list" Component={ListaOpciones} />
 
         <Route path="/inicio-sesion" Component={SignIn} />
         <Route path="/crear-usuario" Component={SignUp} />
