@@ -32,6 +32,11 @@ const ListaOpciones = () => {
                             Registrar un pago con tarjeta de Credito
                         </button>
                     </Link>
+                    <Link to="/calcu-int-comp" className="border-4 mt-4 w-full text-center">
+                        <button className='button-option-list'>
+                            Calculadora de interes compuesto
+                        </button>
+                    </Link>
                 </div>
             </div>
 

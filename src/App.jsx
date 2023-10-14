@@ -6,6 +6,7 @@ import Temperatura from './components/Temperatura';
 import Formulario from './components/Formulario'
 import Registrador from './components/Registrador';
 import SignIn from './components/SignIn';
+import InteresCompuesto from './components/interesCompuesto';
 
 import React, { Fragment, useState } from 'react';
 import {
@@ -32,6 +33,8 @@ function App() {
 
         <Route path="/inicio-sesion" Component={SignIn} />
         <Route path="/crear-usuario" Component={SignUp} />
+        <Route path="/calcu-int-comp" Component={InteresCompuesto} />
+
       </Routes>
 
     </BrowserRouter>

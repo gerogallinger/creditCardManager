@@ -20,20 +20,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
 
 
 export default function SignIn() {
@@ -87,72 +73,73 @@ export default function SignIn() {
     }
 
     return (
-        <ThemeProvider theme={defaultTheme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
+        <div >
+            <div component="main" maxWidth="xs">
+
+                <div
                     sx={{
                         marginTop: 8,
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: 'center',
+                        alignItems: 'center'
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        {/* <LockOutlinedIcon /> */}
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Inicia Sesion
-                    </Typography>
-                    <Box component="form" onSubmit={redirigir} noValidate sx={{ mt: 1 }}>
-                        <TextField
-                            value={mail}
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus />
-                        <TextField
-                            value={password}
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Contraseña"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                        />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Recordarme"
-                        />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}>
-                            Iniciar Sesion
-                        </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Olvidaste tu constraseña?
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link href="/crear-usuario" variant="body2">
-                                    {"No tienes una cuenta? Crear una"}
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Box>
-                {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
-            </Container>
-        </ThemeProvider>
+                    {/* Aca poner un icono de una persona */}
+                    <span component="h1" variant="h5">
+                        Iniciar Sesion!
+                    </span>
+                    <div className='container'>
+
+                        <form component="form" onSubmit={redirigir} noValidate sx={{ mt: 1 }}>
+                            <input
+                                value={mail}
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email"
+                                name="email"
+                                autoComplete="email"
+                                autoFocus />
+                            <input
+                                value={password}
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Contraseña"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                            />
+                            <input
+                                type='checkbox'
+                                label="Recordarme" />
+                            <input
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                value="Iniciar Sesion"
+                                sx={{ mt: 3, mb: 2 }}
+                            />
+
+                        </form>
+                    </div>
+                    <div >
+                        <div >
+                            <a href="#" variant="body2">
+                                Olvidaste tu constraseña?
+                            </a>
+                        </div>
+                        <div >
+                            <a href="/crear-usuario" variant="body2">
+                                {"No tienes una cuenta? Crear una"}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     );
 }
