@@ -16,25 +16,30 @@ const ListaOpciones = () => {
                 </div>
 
                 <div className="flex flex-col h-3/4 w-full">
-                    <a href="" className="border-4 mt-4 w-full text-center">
+                    <Link href="" target='_blank' className="border-4 mt-4 w-full text-center">
 
                         <button className='button-option-list'>
                             Registrar un gasto
                         </button>
-                    </a>
-                    <a href="" className="border-4 mt-4 w-full text-center">
+                    </Link>
+                    <Link href="" target='_blank' className="border-4 mt-4 w-full text-center">
                         <button className='button-option-list'>
                             Registrar un ingreso
                         </button>
-                    </a>
-                    <Link to="/registrador" className="border-4 mt-4 w-full text-center">
+                    </Link>
+                    <Link to="/registrador" target='_blank' className="border-4 mt-4 w-full text-center">
                         <button className='button-option-list'>
                             Registrar un pago con tarjeta de Credito
                         </button>
                     </Link>
-                    <Link to="/calcu-int-comp" className="border-4 mt-4 w-full text-center">
+                    <Link to="/calcu-int-comp" target='_blank' className="border-4 mt-4 w-full text-center">
                         <button className='button-option-list'>
                             Calculadora de interes compuesto
+                        </button>
+                    </Link>
+                    <Link to="/regla3" target='_blank' className="border-4 mt-4 w-full text-center">
+                        <button className='button-option-list'>
+                            Calculadora de regla de 3
                         </button>
                     </Link>
                 </div>

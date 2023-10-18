@@ -36,52 +36,55 @@ const InteresCompuesto = () => {
 
 
         <>
-            <div className="border-8 border-black">
-                <div className='border-4 border-red-300'>
-                    <h2 className=''>
+            <div className="border-8 border-black p-10">
+                <div className='border-4 border-red-300 p-6'>
+                    <h2 className='text-2xl text-center'>
                         Calcula el interes compuesto
                     </h2>
                 </div>
                 <div className='grid-cols-1 p-4 border-4 border-gray-300'>
-                    <form onSubmit={calcularIngresoFinal}>
-                        <div className='border-4 border-green-300 align-sub flex flex-col'>
-                            <label htmlFor="montoIngreso"> Ingresa el monto </label>
-                            <input
-                                id="montoInicial"
-                                type="number"
-                                className='bg-white'
-                                placeholder='Monto..'
-                                value={montoInicial}
-                                onChange={(e) => { setMontoInicial(e.target.value) }}
-                            />
-                        </div>
-                        <div className='border-4 border-green-300 flex flex-col'>
-                            <label htmlFor="montoIngreso"> Ingresa los dias </label>
-                            <input
-                                id="cantDias"
-                                type="number"
-                                className='bg-white'
-                                placeholder='Dias..'
-                                value={cantDias}
-                                onChange={(e) => { setCantDias(e.target.value) }}
-                            />
-                        </div>
-                        <div className='border-4 border-green-300 flex flex-col'>
-                            <label htmlFor="montoIngreso"> Ingresa la tasa anual </label>
-                            <input
-                                id="tasaAnual"
-                                type="number"
-                                className='bg-white'
-                                placeholder='Tasa..'
-                                value={tasaAnual}
-                                onChange={(e) => { setTasaAnual(e.target.value) }}
-                            />
-                        </div>
-                        <button type="submit"
-                            className='mx-auto mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
-                            Calcular
-                        </button>
-                    </form>
+                    <div className='p-6 text-xl text-center'>
+                        <form onSubmit={calcularIngresoFinal}>
+                            <div className='border-4  flex flex-col px-20'>
+                                <label htmlFor="montoIngreso"> Ingresa el monto </label>
+                                <input
+                                    id="montoInicial"
+                                    type="number"
+                                    className='bg-white'
+                                    placeholder='Monto..'
+                                    value={montoInicial}
+                                    onChange={(e) => { setMontoInicial(e.target.value) }}
+                                />
+                            </div>
+                            <div className='border-4 flex flex-col px-20'>
+                                <label htmlFor="montoIngreso"> Ingresa los dias </label>
+                                <input
+                                    id="cantDias"
+                                    type="number"
+                                    className='bg-white'
+                                    placeholder='Dias..'
+                                    value={cantDias}
+                                    onChange={(e) => { setCantDias(e.target.value) }}
+                                />
+                            </div>
+                            <div className='border-4 flex flex-col px-20'>
+                                <label htmlFor="montoIngreso"> Ingresa la tasa anual </label>
+                                <input
+                                    id="tasaAnual"
+                                    type="number"
+                                    className='bg-white'
+                                    placeholder='Tasa..'
+                                    value={tasaAnual}
+                                    onChange={(e) => { setTasaAnual(e.target.value) }}
+                                />
+                            </div>
+                            <button type="submit"
+                                className='mx-auto mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+                                Calcular
+                            </button>
+                        </form>
+
+                    </div>
                 </div>
             </div>
 
