@@ -26,7 +26,7 @@ const ReglaTres = () => {
         <>
             <form onSubmit={calcularReglaDeTres} className="text-justify p-8">
                 <h2 className="text-center">Calcular la regla de 3</h2>
-                <div className="grid grid-cols-2">
+                <div className="grid grid-cols-1">
                     <input
                         type="number"
                         onChange={(e) => {
@@ -34,7 +34,7 @@ const ReglaTres = () => {
                         }}
                         value={porcentajeInicial}
                         placeholder="Ingresa el porcentaje Inicial"
-                        className="border p-1 rounded bg-white"
+                        className="border p-1 rounded bg-white m-1"
                         id=""
                     />
                     <input
@@ -44,7 +44,7 @@ const ReglaTres = () => {
                         }}
                         value={valorInicial}
                         placeholder="Ingresa el valor 1"
-                        className="border p-1 rounded bg-white"
+                        className="border p-1 rounded bg-white m-1"
                         id=""
                     />
                     <input
@@ -54,7 +54,7 @@ const ReglaTres = () => {
                         }}
                         value={porcentajeFinal}
                         placeholder="Ingresa el porcentaje a calcular"
-                        className="border p-1 rounded bg-white"
+                        className="border p-1 rounded bg-white m-1"
                         id=""
                     />
                     <input
@@ -64,7 +64,7 @@ const ReglaTres = () => {
                         }}
                         value={valorFinal}
                         placeholder="Ingresa "
-                        className="border p-1 rounded bg-white"
+                        className="border p-1 rounded bg-white m-1"
                         id=""
                     />
                 </div>
