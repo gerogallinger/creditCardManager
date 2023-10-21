@@ -16,6 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { auth } from '../configs.js'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
 
@@ -28,90 +29,93 @@ export default function SignIn() {
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
 
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
 
-        setMail(data.get('email'))
-        setPassword(data.get('password'))
-        //  = data.get('password')
-        console.log({
-            email: mail,
-            password: password
-        });
+
+        if (!mail || !password) {
+            console.log("Please enter your username and password.");
+            //TODO: hacer un popup para que muestre que debe ingresar alguno de los 2 campos
+            return;
+        }
+
+
         try {
-            createUserWithEmailAndPassword(auth, mail, password)
+            signInWithEmailAndPassword(auth, mail, password)
                 .then((userCredential) => {
                     // Signed in 
-                    const user = userCredential.user;
-                    alert('Usuario enviado a Firebase')
+                    //setUser(userCredential.user);
+                    console.log("Usuario identificado" + JSON.stringify({
+                        email: mail,
+                        password: password
+                    }));
                     setMail('')
                     setPassword('')
+                    navigate('/option-list');
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     console.log('Error ' + errorCode + ' ' + errorMessage);
                 });
-            alert('Usuario enviado a Firebase')
+
 
         } catch (e) {
             console.log('Error ' + e);
         }
-        console.log('Usuario logueado');
 
     };
-    const defaultTheme = createTheme();
-
-
-    const redirigir = (e) => {
-        e.preventDefault() //evita el comportamiento por defecto del formulario 
-
-
-        navigate('/registrador')
-
-    }
 
     return (
 
 
-        <div class="flex items-center justify-center py-40 h-">
-            <div class="relative  ">
+        <div className="flex items-center justify-center py-40 h-">
+            <div className="relative  ">
 
-                <div class="absolute -top-2 -left-2 -right-2 -bottom-2 rounded-lg bg-gradient-to-r from-slate-400 bg-gray-700 to-blue-400 shadow-lg animate-pulse">
+                <div className="absolute -top-2 -left-2 -right-2 -bottom-2 rounded-lg bg-gradient-to-r from-slate-400 bg-gray-700 to-blue-400 shadow-lg animate-pulse">
 
                 </div>
                 <div id="form-container"
-                    class="bg-white p-16 rounded-lg shadow-2xl w-96 relative z-10 transform transition duration-500 ease-in-out ">
+                    className="bg-white p-16 rounded-lg shadow-2xl w-96 relative z-10 transform transition duration-500 ease-in-out ">
                     <h2 id="form-title"
-                        class="text-center text-3xl font-bold mb-10 text-gray-800">
+                        className="text-center text-3xl font-bold mb-10 text-gray-800">
                         Inicio de Sesion
                     </h2>
-                    <form class="space-y-5" onSubmit={handleSubmit}>
-                        <input class="w-full h-12 border border-gray-800 px-3 rounded-lg"
+                    <form className="space-y-5" onSubmit={handleSubmit}>
+                        <input className="w-full h-12 border border-gray-800 px-3 rounded-lg"
                             placeholder="Email"
-                            id=""
+                            id="mail"
                             name=""
                             value={mail}
                             onChange={(e) => setMail(e.target.value)}
                             type="email" />
 
-                        <input class="w-full h-12 border border-gray-800 px-3 rounded-lg"
+                        <input className="w-full h-12 border border-gray-800 px-3 rounded-lg"
                             placeholder="Contraseña"
-                            id=""
+                            id="pass"
                             name=""
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             type="password" />
                         <button
-                            class="w-full h-12 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            className="w-full h-12 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Iniciar Sesion
                         </button>
-                        <a
-                            class="text-blue-500 hover:text-blue-800 text-sm"
-                            href="#">
-                            Olvidaste tu contraseña?
-                        </a>
+                        <div className='flex flex-col text-end'>
+
+                            <a
+                                className="text-blue-500 hover:text-blue-800 text-sm"
+                                href="#">
+                                Olvidaste tu contraseña?
+                            </a>
+                            <a
+                                className="text-blue-500 hover:text-blue-800 text-sm"
+                                href="/crear-usuario">
+                                Crear una cuenta
+                            </a>
+                        </div>
                     </form>
                 </div>
             </div>

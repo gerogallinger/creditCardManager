@@ -1,10 +1,41 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
+import { db } from '../configs'
+import { getAuth } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+
+
+
 
 const ListaOpciones = () => {
 
     const [numeros, SetNumeros] = useState([1, 2, 3, 4, 5, 6])
+    const [userName, setUserName] = useState('')
 
+
+
+    useEffect(() => {
+
+        const auth = getAuth();
+        const user = auth.currentUser;
+        console.log(user);
+        if (user) {
+            const userRef = doc(db, "user", user.uid);
+            getDoc(userRef)
+                .then((userSnapshot) => {
+
+                    if (userSnapshot.exists()) {
+                        setUserName(userSnapshot.get('name'))
+                        console.log("User data: ", userSnapshot.data());
+                    } else {
+                        console.log("El usuario no existe");
+                    }
+                })
+                .catch((error) => {
+                    console.log("Error getting document:", error);
+                });
+        }
+    }, [])
 
 
     return (
@@ -12,7 +43,8 @@ const ListaOpciones = () => {
 
             <div className='border-4 flex flex-col items-center h-screen '>
                 <div className='flex flex-col  h-1/4'>
-                    <h2>Bienvenido Usuario!</h2>
+
+                    <h2>Bienvenido {userName} !</h2>
                 </div>
 
                 <div className="flex flex-col h-3/4 w-full">

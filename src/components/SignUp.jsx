@@ -13,32 +13,60 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SingIn from '../components/SignIn.jsx';
+import { auth, db } from '../configs.js'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { doc, setDoc } from "firebase/firestore";
 
-
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
+import { useState } from 'react'
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+
+
+    const [mail, setMail] = useState('')
+    const [password1, setPassword1] = useState('')
+    const [password2, setPassword2] = useState('')
+    const [nombre, setNombre] = useState('')
+    const [apellido, setApellido] = useState('')
+
+    const navigate = useNavigate();
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+
+        if (!mail || !password1 || !password2 || !nombre || !apellido) {
+            console.log("Completa todos los campos para registrarte");
+            return;
+            //TODO: hacer validacion e informar campo que falta registrar
+        }
+
+        if (!password1.match(password2)) {
+            console.log("Las contrasenias NO coinciden");
+            return;
+        }
+        console.log("Las contrasenias SI coinciden");
+        //aca enviar el usuario a firebase para registrarse
+
+        createUserWithEmailAndPassword(auth, mail, password1)
+            .then((userCredential) => {
+                console.log("Credenciales " + JSON.stringify(userCredential));
+                //setuser 
+
+
+
+                navigate('/inicio-sesion');
+
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log('Error ' + errorCode + ' ' + errorMessage);
+                // console.log(JSON.stringify(error));
+            });
+
     };
 
     return (
@@ -57,7 +85,7 @@ export default function SignUp() {
                         {/* <LockOutlinedIcon /> */}
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign up
+                        Registrarse!
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
@@ -69,6 +97,8 @@ export default function SignUp() {
                                     fullWidth
                                     id="firstName"
                                     label="Nombre"
+                                    value={nombre}
+                                    onChange={(e) => setNombre(e.target.value)}
                                     autoFocus
                                 />
                             </Grid>
@@ -79,6 +109,8 @@ export default function SignUp() {
                                     id="lastName"
                                     label="Apellido"
                                     name="lastName"
+                                    value={apellido}
+                                    onChange={(e) => setApellido(e.target.value)}
                                     autoComplete="family-name"
                                 />
                             </Grid>
@@ -89,26 +121,36 @@ export default function SignUp() {
                                     id="email"
                                     label="Email"
                                     name="email"
+                                    value={mail}
+                                    onChange={(e) => setMail(e.target.value)}
                                     autoComplete="email"
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                    value={password1}
+                                    onChange={(e) => setPassword1(e.target.value)}
                                     required
                                     fullWidth
-                                    name="password"
                                     label="Contraseña"
                                     type="password"
-                                    id="password"
+                                    id="password1"
                                     autoComplete="new-password"
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                {/* <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                    label="I want to receive inspiration, marketing promotions and updates via email."
-                                /> */}
+                                <TextField
+                                    value={password2}
+                                    onChange={(e) => setPassword2(e.target.value)}
+                                    required
+                                    fullWidth
+                                    label="Repita su contraseña"
+                                    type="password"
+                                    id="password2"
+                                    autoComplete="new-password"
+                                />
                             </Grid>
+
                         </Grid>
                         <Button
                             type="submit"
