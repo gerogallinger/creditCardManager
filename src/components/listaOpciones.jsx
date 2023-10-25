@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { db } from '../configs'
 import { getAuth } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,12 +12,15 @@ const ListaOpciones = () => {
     const [numeros, SetNumeros] = useState([1, 2, 3, 4, 5, 6])
     const [userName, setUserName] = useState('')
 
-
+    const navigate = useNavigate();
 
     useEffect(() => {
 
         const auth = getAuth();
         const user = auth.currentUser;
+        if (!user) {
+            navigate('/inicio-sesion');
+        }
         console.log(user);
         if (user) {
             const userRef = doc(db, "user", user.uid);

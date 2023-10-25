@@ -14,7 +14,7 @@ function Temperatura() {
 
   return (
     <Fragment>
-      <div class=''>
+      <div className=''>
         <h1>
           La temperatura es : {num}
         </h1>
@@ -23,8 +23,8 @@ function Temperatura() {
             num > 21 ? 'Hace calorcito' : 'Esta fresco wey'
           }
         </p>
-        <button class='' onClick={SubirTemp}>Aumentar temperatura</button>
-        <button class='' onClick={BajarTemp}>Disminuir temperatura</button>
+        <button className='' onClick={SubirTemp}>Aumentar temperatura</button>
+        <button className='' onClick={BajarTemp}>Disminuir temperatura</button>
       </div>
     </Fragment>
   );
