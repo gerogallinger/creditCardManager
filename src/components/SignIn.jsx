@@ -1,23 +1,12 @@
 import * as React from 'react';
 import { useState } from 'react'
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-//import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { auth } from '../configs.js'
+
+import { auth, provider, db } from '../configs.js'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
+import { signInWithPopup } from 'firebase/auth';
+import { doc, setDoc, collection, getDocs } from "firebase/firestore";
 
 
 
@@ -27,46 +16,103 @@ export default function SignIn() {
 
     const [mail, setMail] = useState('')
     const [password, setPassword] = useState('')
+
     const navigate = useNavigate();
 
 
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
 
-        if (!mail || !password) {
-            console.log("Please enter your username and password.");
-            //TODO: hacer un popup para que muestre que debe ingresar alguno de los 2 campos
-            return;
-        }
+
+        if (mail && password) {      // Inicio de sesión con correo electrónico y contraseña      
+            if (!mail || !password) {
+                console.log("Please enter your username and password.");
+                //TODO: hacer un popup para que muestre que debe ingresar alguno de los 2 campos
+                return;
+            }
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+
+                const userToFirebase = {
+                    mail: mail
+                }
+
+                console.log("Usuario identificado por mail" + JSON.stringify({
+                    email: mail,
+                    password: password
+                }));
 
 
-        try {
-            signInWithEmailAndPassword(auth, mail, password)
-                .then((userCredential) => {
-                    // Signed in 
-                    //setUser(userCredential.user);
-                    console.log("Usuario identificado" + JSON.stringify({
-                        email: mail,
-                        password: password
-                    }));
-                    setMail('')
-                    setPassword('')
+                setMail('')
+                setPassword('')
+                navigate('/option-list');
+                // Aquí puedes manejar lo que sucede después del inicio de sesión      
+            } catch (error) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log('Error ' + errorCode + ' ' + errorMessage);
+            }
+        } else {
+            // Inicio de sesión con Google      
+
+            try {
+                signInWithPopup(auth, provider).then((data) => {
+                    console.log(JSON.stringify(data.user));
+
+                    sendUserDataFirebase(data.user)
+                    console.log("id:" + data.user.uid);
+
+                    localStorage.setItem("uid", data.user.uid)
+
+
                     navigate('/option-list');
                 })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.log('Error ' + errorCode + ' ' + errorMessage);
-                });
 
 
-        } catch (e) {
-            console.log('Error ' + e);
+
+
+
+            } catch (error) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log('Error ' + errorCode + ' ' + errorMessage);
+            }
+        }
+    };
+
+
+    async function sendUserDataFirebase(user) {
+
+        const userToFirebase = {
+            mail: user.email,
+            name: user.displayName,
+            mailVerified: user.emailVerified
         }
 
-    };
+        try {
+            const userRef = doc(db, 'users', user.uid);
+            await setDoc(userRef, userToFirebase);
+            console.log('Usuario agregado correctamente a Firestore');
+        } catch (error) {
+            console.error('Error al agregar usuario a Firestore:', error);
+            throw error;
+        }
+    }
+    // const SignInGoogle = () => {
+
+    //     signInWithPopup(auth, provider).then((data) => {
+    //         console.log(JSON.stringify(data.user));
+
+    //         localStorage.setItem("uid", data.user.uid)
+
+    //         console.log("id: " + data.user.uid);
+
+
+    //     })
+    // }
+
+
 
     return (
 
@@ -103,8 +149,23 @@ export default function SignIn() {
                             className="w-full h-12 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Iniciar Sesion
                         </button>
-                        <div className='flex flex-col text-end'>
+                        <div>
 
+                            <button
+                                style={{
+                                    display: "flex", alignItems: "center", borderRadius: "4px",
+                                    width: "256px", backgroundColor: "#ffffff", color: "#000000",
+                                    padding: "10px", boxShadow: "rgba(0, 0, 0, 0.25) 1px 2px 8px 0px",
+                                    cursor: "pointer",
+                                }}
+                            // onClick={SignInGoogle}
+                            >
+                                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" className="w-5 h-5 mr-2" />
+                                Iniciar sesión con Google
+                            </button>
+
+                        </div>
+                        <div className='flex flex-col text-end'>
                             <a
                                 className="text-blue-500 hover:text-blue-800 text-sm"
                                 href="#">

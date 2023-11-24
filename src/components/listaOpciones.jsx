@@ -12,33 +12,52 @@ const ListaOpciones = () => {
     const [numeros, SetNumeros] = useState([1, 2, 3, 4, 5, 6])
     const [userName, setUserName] = useState('')
 
+    const [items, setItems] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
+        async function getUser() {
+            let uid = localStorage.getItem('uid');
 
-        const auth = getAuth();
-        const user = auth.currentUser;
-        if (!user) {
-            navigate('/inicio-sesion');
+            const userRef = doc(db, 'users', uid);
+            const userDoc = await getDoc(userRef);
+            console.log('datos:' + JSON.stringify(userDoc));
+            if (userDoc.exists()) {
+                console.log('Datos del usuario:' + JSON.stringify(userDoc.data()));
+                setUserName(userDoc.data().name)
+            } else {
+                console.log('No se encontró el documento del usuario.');
+            }
         }
-        console.log(user);
-        if (user) {
-            const userRef = doc(db, "user", user.uid);
-            getDoc(userRef)
-                .then((userSnapshot) => {
 
-                    if (userSnapshot.exists()) {
-                        setUserName(userSnapshot.get('name'))
-                        console.log("User data: ", userSnapshot.data());
-                    } else {
-                        console.log("El usuario no existe");
-                    }
-                })
-                .catch((error) => {
-                    console.log("Error getting document:", error);
-                });
-        }
-    }, [])
+        getUser();
+    }, []);
+
+
+
+
+    // const auth = getAuth();
+    // const user = auth.currentUser;
+    // if (!user) {
+    //     navigate('/inicio-sesion');
+    // }
+    // console.log(user);
+    // if (user) {
+    //     const userRef = doc(db, "user", user.uid);
+    //     getDoc(userRef)
+    //         .then((userSnapshot) => {
+
+    //             if (userSnapshot.exists()) {
+    //                 setUserName(userSnapshot.get('name'))
+    //                 console.log("User data: ", userSnapshot.data());
+    //             } else {
+    //                 console.log("El usuario no existe");
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.log("Error getting document:", error);
+    //         });
+
 
 
     return (

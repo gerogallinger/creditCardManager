@@ -37,6 +37,7 @@ function App() {
         <Route path="/crear-usuario" Component={SignUp} />
         <Route path="/calcu-int-comp" Component={InteresCompuesto} />
         <Route path="/regla3" Component={ReglaTres} />
+        <Route path="/*" Component={SignIn} />
 
       </Routes>
 
