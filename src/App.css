@@ -1,8 +1,9 @@
 .App {
   text-align: center;
-  
+
 }
-*{
+
+* {
   /* background-color: #abafb1; */
   /* font-family: 'Open Sans', sans-serif; */
   font-family: 'Montserrat', sans-serif;
@@ -39,42 +40,51 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 .button-option-list {
-  margin:8px;
-  
-  --hover-shadows: 16px 16px 33px #121212,
-                    -16px -16px 33px #303030;
+  margin: 8px;
+   --hover-shadows: 10px 10px 15px #12121260, -10px -10px 15px rgba(48, 48, 48, 0.685); 
   --accent: rgb(112, 223, 186);
   font-weight: bold;
   letter-spacing: 0.1em;
-  border: none;
-  border-radius: 1.1em;
+
+  border-radius: 8px;
   background-color: #212121;
   color: white;
-  padding: 1em 2em;
-  transition: box-shadow ease-in-out 0.3s,
-              background-color ease-in-out 0.1s,
-              letter-spacing ease-in-out 0.1s,
-              transform ease-in-out 0.1s;
-  box-shadow: 13px 13px 10px #1c1c1c,
-              -13px -13px 10px #262626;
-  font-size: large;
+  padding: 1em ;
+  transition: box-shadow ease-in-out 0.1s, background-color ease-in-out 0.1s,
+    letter-spacing ease-in-out 0.1s, transform ease-in-out 0.1s;
+  text-align: center;
+  font-size: medium;
   font-family: sans-serif;
- }
- 
- .button-option-list:hover {
+  height: max-content;
+  width: 300px;
+  
+  display: inline-block; /* Para que el ancho mínimo se aplique correctamente */
+}
+
+.button-option-list:hover {
   box-shadow: var(--hover-shadows);
- }
- 
- .button-option-list:active {
-  box-shadow: var(--hover-shadows),
-               var(--accent) 0px 0px 30px 5px;
-  background-color: var(--accent);
+}
+
+.button-option-list:active {
+  box-shadow: #4b4747, var(--accent) 0px 0px 30px 5px;
+  background-color: rgb(148, 148, 148);
   transform: scale(0.95);
- }
- 
+}
+
+.input-list{
+  
+  width: 100%;
+  max-width: 90%;
+  display: grid;
+  grid-template-rows: repeat(2, 2fr);
+  grid-template-columns: repeat(1, 2fr);
+  gap: 12px;
+  
+}

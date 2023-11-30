@@ -4,7 +4,7 @@ import { db } from '../configs'
 import { getAuth } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
-
+import OptionElement from './miniComponents/optionElement'
 
 
 const ListaOpciones = () => {
@@ -16,6 +16,7 @@ const ListaOpciones = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        //buscamos el user en localstorage para traer los datos
         async function getUser() {
             let uid = localStorage.getItem('uid');
 
@@ -63,41 +64,20 @@ const ListaOpciones = () => {
     return (
         <Fragment>
 
-            <div className='border-4 flex flex-col items-center h-screen '>
-                <div className='flex flex-col  h-1/4'>
-
+            <div className='border-4 flex flex-col items-center justify-center h-screen '>
+                <div className='flex flex-col items-center h-1/5'>
                     <h2>Bienvenido {userName} !</h2>
                 </div>
 
-                <div className="flex flex-col h-3/4 w-full">
-                    <Link href="" target='_blank' className="border-4 mt-4 w-full text-center">
-
-                        <button className='button-option-list'>
-                            Registrar un gasto
-                        </button>
-                    </Link>
-                    <Link href="" target='_blank' className="border-4 mt-4 w-full text-center">
-                        <button className='button-option-list'>
-                            Registrar un ingreso
-                        </button>
-                    </Link>
-                    <Link to="/registrador" target='_blank' className="border-4 mt-4 w-full text-center">
-                        <button className='button-option-list'>
-                            Registrar un pago con tarjeta de Credito
-                        </button>
-                    </Link>
-                    <Link to="/calcu-int-comp" target='_blank' className="border-4 mt-4 w-full text-center">
-                        <button className='button-option-list'>
-                            Calculadora de interes compuesto
-                        </button>
-                    </Link>
-                    <Link to="/regla3" target='_blank' className="border-4 mt-4 w-full text-center">
-                        <button className='button-option-list'>
-                            Calculadora de regla de 3
-                        </button>
-                    </Link>
+                <div className="flex flex-col items-center  align-middle h-4/5 w-full">
+                    <OptionElement title="Crear un nuevo reclamo" route="" />
+                    <OptionElement title="Registrar un ingreso" route="" />
+                    <OptionElement title="Registrar un pago con tarjeta de Crédito" route="/registrador" />
+                    <OptionElement title="Calculadora de interés compuesto" route="/calcu-int-comp" />
+                    <OptionElement title="Calculadora de regla de 3" route="/regla3" />
                 </div>
             </div>
+
 
 
         </Fragment>
