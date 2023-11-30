@@ -33,11 +33,11 @@ function App() {
         <Route path="/registrador" Component={Registrador} />
         <Route path="/option-list" Component={ListaOpciones} />
 
-        <Route path="/inicio-sesion" Component={SignIn} />
-        <Route path="/crear-usuario" Component={SignUp} />
+        <Route path="/login" Component={SignIn} />
+        <Route path="/singup" Component={SignUp} />
         <Route path="/calcu-int-comp" Component={InteresCompuesto} />
         <Route path="/regla3" Component={ReglaTres} />
-        <Route path="/*" Component={SignIn} />
+        <Route path="/" Component={SignIn} />
 
       </Routes>
 

@@ -15,6 +15,7 @@ const InteresCompuesto = () => {
     const [dias, setDias] = useState('');
     const [monto, setMonto] = useState('');
     const [tasa, setTasa] = useState('');
+    const [interes, setInteres] = useState('');
 
 
     const calcularIngresoFinal = (e) => {
@@ -24,8 +25,8 @@ const InteresCompuesto = () => {
         const interes = montoInicial * Math.pow((1 + (tasaAnual / 365) / 100), cantDias);
 
         console.log("El monto final es: " + interes.toFixed(2));
-        alert(`El interés compuesto es: ${interes.toFixed(2)}`);
-
+        //alert(`El interés compuesto es: ${interes.toFixed(2)}`);
+        setInteres(interes.toFixed(2))
     }
 
 
@@ -36,8 +37,8 @@ const InteresCompuesto = () => {
 
 
         <>
-            <div className="border-8 border-black p-10">
-                <div className='border-4 border-red-300 p-6'>
+            <div className="border-8 border-black p-6 min-h-screen">
+                <div className='border-4 border-red-300 p-2'>
                     <h2 className='text-2xl text-center'>
                         Calcula el interes compuesto
                     </h2>
@@ -45,7 +46,7 @@ const InteresCompuesto = () => {
                 <div className='grid-cols-1 p-4 border-4 border-gray-300'>
                     <div className='p-6 text-xl text-center'>
                         <form onSubmit={calcularIngresoFinal}>
-                            <div className='border-4  flex flex-col px-20'>
+                            <div className='border-2  flex flex-col px-10'>
                                 <label htmlFor="montoIngreso"> Ingresa el monto </label>
                                 <input
                                     id="montoInicial"
@@ -56,7 +57,7 @@ const InteresCompuesto = () => {
                                     onChange={(e) => { setMontoInicial(e.target.value) }}
                                 />
                             </div>
-                            <div className='border-4 flex flex-col px-20'>
+                            <div className='border-2 flex flex-col px-10'>
                                 <label htmlFor="montoIngreso"> Ingresa los dias </label>
                                 <input
                                     id="cantDias"
@@ -67,7 +68,7 @@ const InteresCompuesto = () => {
                                     onChange={(e) => { setCantDias(e.target.value) }}
                                 />
                             </div>
-                            <div className='border-4 flex flex-col px-20'>
+                            <div className='border-2 flex flex-col px-10'>
                                 <label htmlFor="montoIngreso"> Ingresa la tasa anual </label>
                                 <input
                                     id="tasaAnual"
@@ -85,6 +86,22 @@ const InteresCompuesto = () => {
                         </form>
 
                     </div>
+                </div>
+                <div>
+                    {
+                        interes ? (
+                            <div className=' flex flex-col text-center p-4'>
+
+                                <h2 className='font-black text-xl px-20'> El resultado de tu interes es </h2>
+                                <br />
+                                <h2 className='font-black text-xl'>
+                                    $ {interes}</h2>
+                            </div>
+                        ) :
+                            (
+                                <span></span>
+                            )
+                    }
                 </div>
             </div>
 

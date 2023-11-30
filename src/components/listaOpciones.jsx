@@ -19,7 +19,11 @@ const ListaOpciones = () => {
         //buscamos el user en localstorage para traer los datos
         async function getUser() {
             let uid = localStorage.getItem('uid');
-
+            if (!uid) {
+                console.log("No tenemos usuario cargado");
+                navigate("/login")
+                return
+            }
             const userRef = doc(db, 'users', uid);
             const userDoc = await getDoc(userRef);
             console.log('datos:' + JSON.stringify(userDoc));
@@ -28,37 +32,12 @@ const ListaOpciones = () => {
                 setUserName(userDoc.data().name)
             } else {
                 console.log('No se encontró el documento del usuario.');
+                navigate("/singup")
             }
         }
 
         getUser();
     }, []);
-
-
-
-
-    // const auth = getAuth();
-    // const user = auth.currentUser;
-    // if (!user) {
-    //     navigate('/inicio-sesion');
-    // }
-    // console.log(user);
-    // if (user) {
-    //     const userRef = doc(db, "user", user.uid);
-    //     getDoc(userRef)
-    //         .then((userSnapshot) => {
-
-    //             if (userSnapshot.exists()) {
-    //                 setUserName(userSnapshot.get('name'))
-    //                 console.log("User data: ", userSnapshot.data());
-    //             } else {
-    //                 console.log("El usuario no existe");
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             console.log("Error getting document:", error);
-    //         });
-
 
 
     return (

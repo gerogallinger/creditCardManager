@@ -1,13 +1,41 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import { doc, getDoc } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
+import { db } from '../configs'
+
 
 function ReglaTres() {
 
+    const [userName, setUserName] = useState('')
     const [valor1, setvalor1] = useState('')
     const [valor2, setvalor2] = useState('')
     const [porcentaje1, setporcentaje1] = useState('')
     const [porcentaje2, setporcentaje2] = useState('')
 
+    const navigate = useNavigate()
+    //buscamos el user en localstorage para traer los datos sino redirigimos al login
+    useEffect(() => {
+        async function getUser() {
+            let uid = localStorage.getItem('uid');
+            if (!uid) {
+                console.log("No tenemos usuario cargado");
+                navigate("/login")
+                return
+            }
+            const userRef = doc(db, 'users', uid);
+            const userDoc = await getDoc(userRef);
+            console.log('datos:' + JSON.stringify(userDoc));
+            if (userDoc.exists()) {
+                console.log('Datos del usuario:' + JSON.stringify(userDoc.data()));
+                setUserName(userDoc.data().name)
+            } else {
+                console.log('No se encontró el documento del usuario.');
+                navigate("/singup")
+            }
+        }
 
+        getUser();
+    }, []);
 
 
     const calcular = () => {

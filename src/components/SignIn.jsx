@@ -173,7 +173,7 @@ export default function SignIn() {
                             </a>
                             <a
                                 className="text-blue-500 hover:text-blue-800 text-sm"
-                                href="/crear-usuario">
+                                href="/singup">
                                 Crear una cuenta
                             </a>
                         </div>

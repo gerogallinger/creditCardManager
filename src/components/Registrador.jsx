@@ -47,7 +47,7 @@ function Registrador() {
     //     const auth = getAuth();
     //     const user = auth.currentUser;
     //     if (!user) {
-    //         navigate('/inicio-sesion');
+    //         navigate('/login');
     //     }
     //     console.log(user);
     //     if (user) {

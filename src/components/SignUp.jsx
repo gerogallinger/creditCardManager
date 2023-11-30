@@ -57,7 +57,7 @@ export default function SignUp() {
 
 
 
-                navigate('/inicio-sesion');
+                navigate('/login');
 
             })
             .catch((error) => {
@@ -161,7 +161,7 @@ export default function SignUp() {
                         </Button>
                         <Grid container justifyContent="center">
                             <Grid item>
-                                <Link href='/inicio-sesion' variant="body2" >
+                                <Link href='/login' variant="body2" >
                                     Ya tenes una cuenta? Inicie sesion aqui
                                 </Link>
                             </Grid>
