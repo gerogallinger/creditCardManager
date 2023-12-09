@@ -43,10 +43,10 @@ const InteresCompuesto = () => {
                         Calcula el interes compuesto
                     </h2>
                 </div>
-                <div className='grid-cols-1 p-4 border-4 border-gray-300'>
-                    <div className='p-6 text-xl text-center'>
+                <div className='grid-cols-1 p-1 border-4 border-gray-300'>
+                    <div className='px-2 py-4 text-xl text-center'>
                         <form onSubmit={calcularIngresoFinal}>
-                            <div className='border-2  flex flex-col px-10'>
+                            <div className='border-2 flex flex-col px-10'>
                                 <label htmlFor="montoIngreso"> Ingresa el monto </label>
                                 <input
                                     id="montoInicial"
@@ -70,6 +70,12 @@ const InteresCompuesto = () => {
                             </div>
                             <div className='border-2 flex flex-col px-10'>
                                 <label htmlFor="montoIngreso"> Ingresa la tasa anual </label>
+                                <input
+                                    type="number"
+                                    placeholder="$0.00"
+                                    className="w-full pl-[4.5rem] pr-3 py-2 appearance-none bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                                />
+                                {/* TODO:  cambiar los input por este tipo arriba*/}
                                 <input
                                     id="tasaAnual"
                                     type="number"

@@ -32,7 +32,7 @@ export default function SignIn() {
                 return;
             }
             try {
-                await auth.signInWithEmailAndPassword(email, password);
+                await auth.signInWithEmailAndPassword(mail, password);
 
                 const userToFirebase = {
                     mail: mail
