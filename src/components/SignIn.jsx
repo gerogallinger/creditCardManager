@@ -117,7 +117,7 @@ export default function SignIn() {
     return (
 
 
-        <div className="flex items-center justify-center py-40 h-">
+        <div className="flex items-center justify-center py-40  bg-gray-800 min-h-screen">
             <div className="relative  ">
 
                 <div className="absolute -top-2 -left-2 -right-2 -bottom-2 rounded-lg bg-gradient-to-r from-slate-400 bg-gray-700 to-blue-400 shadow-lg animate-pulse">

@@ -58,9 +58,11 @@ const ListaOpciones = () => {
                         </div>
 
                         <div className="flex flex-col items-center  align-middle h-4/5 w-full">
-                            <OptionElement title="Crear un nuevo reclamo" route="" />
-                            <OptionElement title="Registrar un ingreso" route="" />
-                            <OptionElement title="Registrar un pago con tarjeta de Crédito" route="/registrador" />
+                            {/* <OptionElement title="Crear un nuevo reclamo" route="" /> */}
+                            <OptionElement title="Ver Mis Gastos" route="/regla3" />
+                            <OptionElement title="Registrar un ingreso" route="/registrador" />
+                            <OptionElement title="Ver Cuotas del Mes" route="/regla3" />
+                            <OptionElement title="Registrar un pago con tarjeta de Crédito" route="/register-credit-car" />
                             <OptionElement title="Calculadora de interés compuesto" route="/calcu-int-comp" />
                             <OptionElement title="Calculadora de regla de 3" route="/regla3" />
                         </div>

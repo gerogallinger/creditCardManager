@@ -70,106 +70,80 @@ export default function SignUp() {
     };
 
     return (
-        <ThemeProvider theme={defaultTheme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        {/* <LockOutlinedIcon /> */}
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Registrarse!
-                    </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    autoComplete="given-name"
-                                    name="firstName"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="Nombre"
-                                    value={nombre}
-                                    onChange={(e) => setNombre(e.target.value)}
-                                    autoFocus
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Apellido"
-                                    name="lastName"
-                                    value={apellido}
-                                    onChange={(e) => setApellido(e.target.value)}
-                                    autoComplete="family-name"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="email"
-                                    label="Email"
-                                    name="email"
-                                    value={mail}
-                                    onChange={(e) => setMail(e.target.value)}
-                                    autoComplete="email"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    value={password1}
-                                    onChange={(e) => setPassword1(e.target.value)}
-                                    required
-                                    fullWidth
-                                    label="Contraseña"
-                                    type="password"
-                                    id="password1"
-                                    autoComplete="new-password"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    value={password2}
-                                    onChange={(e) => setPassword2(e.target.value)}
-                                    required
-                                    fullWidth
-                                    label="Repita su contraseña"
-                                    type="password"
-                                    id="password2"
-                                    autoComplete="new-password"
-                                />
-                            </Grid>
+        <div className="min-h-screen flex items-center justify-center bg-gray-800">
+            <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
 
-                        </Grid>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}>
-                            Registrarse
-                        </Button>
-                        <Grid container justifyContent="center">
-                            <Grid item>
-                                <Link href='/login' variant="body2" >
-                                    Ya tenes una cuenta? Inicie sesion aqui
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Box>
-                {/* <Copyright sx={{ mt: 5 }} /> */}
-            </Container>
-        </ThemeProvider >
+                <div className="flex flex-col items-center">
+                    <div className="bg-secondary-main rounded-full p-2 ">
+                        <span class="material-symbols-outlined text-5xl">
+                            person_add
+                        </span>
+                    </div>
+                    <h1 className="mt-2 text-2xl font-bold">Registrarse</h1>
+                </div>
+                <form onSubmit={handleSubmit} className="mt-3">
+                    <div className="grid grid-cols-1 gap-4">
+                        <input
+                            type="text"
+                            name="firstName"
+                            required
+                            placeholder="Nombre"
+                            value={nombre}
+                            onChange={(e) => setNombre(e.target.value)}
+                            className="w-full p-2 border border-gray-300 rounded  focus:border-primary"
+                        />
+                        <input
+                            type="text"
+                            name="lastName"
+                            required
+                            placeholder="Apellido"
+                            value={apellido}
+                            onChange={(e) => setApellido(e.target.value)}
+                            className="w-full p-2 border border-gray-300 rounded  focus:border-primary"
+                        />
+                        <input
+                            type="email"
+                            name="lastName"
+                            required
+                            placeholder="Email"
+                            value={mail}
+                            onChange={(e) => setMail(e.target.value)}
+                            className="w-full p-2 border border-gray-300 rounded  focus:border-primary"
+                        />
+                        <input
+                            type="password"
+                            name="pass1"
+                            required
+                            placeholder="Ingresa la contraseña"
+                            value={password1}
+                            onChange={(e) => setPassword1(e.target.value)}
+                            className="w-full p-2 border border-gray-300 rounded  focus:border-primary"
+                        />
+                        <input
+                            type="password"
+                            name="pass2"
+                            required
+                            placeholder="Volve a ingresar la contraseña"
+                            value={password2}
+                            onChange={(e) => setPassword2(e.target.value)}
+                            className="w-full p-2 border border-gray-300 rounded  focus:border-primary"
+                        />
+
+                    </div>
+                    <button
+                        type="submit"
+                        className="mt-3 w-full bg-primary text-white p-2 rounded hover:bg-slate-800  bg-gray-600"
+                    >
+                        Registrarse
+                    </button>
+                    <div className="text-center mt-2">
+                        <a href="/login" className="text-blue-500 hover:underline">
+                            ¿Ya tienes una cuenta? Inicia sesión aquí
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     );
 }

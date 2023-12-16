@@ -8,7 +8,7 @@ import Registrador from './components/Registrador';
 import SignIn from './components/SignIn';
 import InteresCompuesto from './components/interesCompuesto';
 import ReglaTres from './components/reglaTres';
-
+import RegistradorTC from './components/registradorTC'
 
 import React, { Fragment, useState } from 'react';
 import {
@@ -32,6 +32,7 @@ function App() {
 
         <Route path="/registrador" Component={Registrador} />
         <Route path="/option-list" Component={ListaOpciones} />
+        <Route path="/register-credit-car" Component={RegistradorTC} />
 
         <Route path="/login" Component={SignIn} />
         <Route path="/singup" Component={SignUp} />
@@ -48,11 +49,11 @@ function App() {
 
 function Inicio() {
   return (
-    <Fragment>
+    <>
       <h1>Bienvenido al inicio</h1>
       <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro ipsum, fugit nisi nobis dolore magnam qui corrupti necessitatibus dolores dicta quibusdam id obcaecati, impedit veritatis ad commodi sapiente et ut.</h3>
       <h3>Estamos probando el router</h3>
-    </Fragment>
+    </>
   );
 }
 

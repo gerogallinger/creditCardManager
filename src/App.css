@@ -1,13 +1,11 @@
 .App {
   text-align: center;
-
 }
 
 * {
   /* background-color: #abafb1; */
   /* font-family: 'Open Sans', sans-serif; */
-  font-family: 'Montserrat', sans-serif;
-
+  font-family: "Montserrat", sans-serif;
 }
 
 .App-logo {
@@ -48,7 +46,8 @@
 
 .button-option-list {
   margin: 8px;
-   --hover-shadows: 10px 10px 15px #12121260, -10px -10px 15px rgba(48, 48, 48, 0.685); 
+  --hover-shadows: 10px 10px 15px #12121260,
+    -10px -10px 15px rgba(48, 48, 48, 0.685);
   --accent: rgb(112, 223, 186);
   font-weight: bold;
   letter-spacing: 0.1em;
@@ -56,7 +55,7 @@
   border-radius: 8px;
   background-color: #212121;
   color: white;
-  padding: 1em ;
+  padding: 1em;
   transition: box-shadow ease-in-out 0.1s, background-color ease-in-out 0.1s,
     letter-spacing ease-in-out 0.1s, transform ease-in-out 0.1s;
   text-align: center;
@@ -64,7 +63,7 @@
   font-family: sans-serif;
   height: max-content;
   width: 300px;
-  
+
   display: inline-block; /* Para que el ancho mínimo se aplique correctamente */
 }
 
@@ -78,13 +77,11 @@
   transform: scale(0.95);
 }
 
-.input-list{
-  
+.input-list {
   width: 100%;
   max-width: 90%;
   display: grid;
   grid-template-rows: repeat(2, 2fr);
   grid-template-columns: repeat(1, 2fr);
   gap: 12px;
-  
 }
