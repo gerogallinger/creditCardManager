@@ -52,15 +52,18 @@ const ListaOpciones = () => {
             ) :
                 (
 
-                    <div className='border-4 flex flex-col items-center justify-center h-screen '>
-                        <div className='flex flex-col items-center h-1/5'>
-                            <h2>Bienvenido {userName} !</h2>
+                    <div className='bg-gray-700 flex flex-col items-center justify-center h-screen '>
+                        <div className='items-center h-1/5 w-full p-8 text-center mt-3 '>
+                            <h2 className='text-white md:border-dotted font-bold mt-1'
+                            >Bienvenido {userName} !</h2>
+                            <h3 className='text-white'
+                            >Que queres hacer hoy?</h3>
                         </div>
 
                         <div className="flex flex-col items-center  align-middle h-4/5 w-full">
                             {/* <OptionElement title="Crear un nuevo reclamo" route="" /> */}
-                            <OptionElement title="Ver Mis Gastos" route="/regla3" />
-                            <OptionElement title="Registrar un ingreso" route="/registrador" />
+                            <OptionElement title="Ver Mis Gastos" route="/regla3" target={"_blank"} />
+                            <OptionElement title="Registrar un nuevo movimiento" route="/new-mov" />
                             <OptionElement title="Ver Cuotas del Mes" route="/regla3" />
                             <OptionElement title="Registrar un pago con tarjeta de Crédito" route="/register-credit-car" />
                             <OptionElement title="Calculadora de interés compuesto" route="/calcu-int-comp" />

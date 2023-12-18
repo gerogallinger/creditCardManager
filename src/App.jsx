@@ -9,6 +9,7 @@ import SignIn from './components/SignIn';
 import InteresCompuesto from './components/interesCompuesto';
 import ReglaTres from './components/reglaTres';
 import RegistradorTC from './components/registradorTC'
+import Movimientos from './components/movimientos'
 
 import React, { Fragment, useState } from 'react';
 import {
@@ -36,6 +37,7 @@ function App() {
 
         <Route path="/login" Component={SignIn} />
         <Route path="/singup" Component={SignUp} />
+        <Route path="/new-mov" Component={Movimientos} />
         <Route path="/calcu-int-comp" Component={InteresCompuesto} />
         <Route path="/regla3" Component={ReglaTres} />
         <Route path="/" Component={SignIn} />
