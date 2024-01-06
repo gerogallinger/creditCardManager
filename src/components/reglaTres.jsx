@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
@@ -46,8 +46,7 @@ function ReglaTres() {
 
 
     const onSubmit = (data) => {
-        let valor;
-        let isPorcentaje;
+
         calcular()
         // Aquí va tu lógica para calcular valor e isPorcentaje
         // Usar 'data' para acceder a los valores del formulario

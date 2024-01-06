@@ -1,20 +1,15 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const InteresCompuesto = () => {
 
     const [montoInicial, setMontoInicial] = useState('')
     const [cantDias, setCantDias] = useState('')
-    const [tasaMensual, setTasaMensual] = useState('')
+
     const [tasaAnual, setTasaAnual] = useState('')
-    const [tasaDiaria, setTasaDiaria] = useState('')
-    const [montoFinal, setMontoFinal] = useState('')
+
     const [aux, setAux] = useState('')
 
 
-
-    const [dias, setDias] = useState('');
-    const [monto, setMonto] = useState('');
-    const [tasa, setTasa] = useState('');
     const [interes, setInteres] = useState('');
 
 

@@ -1,16 +1,10 @@
-import React, { Fragment, useState, filter, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import uniqid from 'uniqid'
-import { getAuth } from "firebase/auth";
 import { db } from '../configs'
-import { useNavigate } from 'react-router-dom';
-
-import { doc, getDoc } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 
+
 function Registrador() {
-
-
-
 
     const [listaCuotas, setListaCuotas] = useState([])
     const [nombreCuota, setNombreCuota] = useState('')
@@ -19,16 +13,12 @@ function Registrador() {
     const [fechaCompra, setFechaCompra] = useState('')
     const [mesSeleccion, setMesSeleccion] = useState('')
 
-
     const [cantCuotas, setCantidadCuotas] = useState('')
     const [modoEdicion, setModoEdicion] = useState(false)
     const [id, setId] = useState('')
     const [error, setError] = useState(null)
 
     const [categoria, setCategoria] = useState('')
-    const navigate = useNavigate();
-
-
 
     function validarCampos(objeto) {
         //validamos los campos del formulario y devolvemos
