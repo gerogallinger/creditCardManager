@@ -1,7 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
 import { db } from '../configs'
-import { getAuth } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 import OptionElement from './miniComponents/optionElement'
@@ -9,10 +7,10 @@ import SimpleSpinner from '../components/miniComponents/simpleSpinner'
 
 const ListaOpciones = () => {
 
-    const [numeros, SetNumeros] = useState([1, 2, 3, 4, 5, 6])
+    // const [numeros, SetNumeros] = useState([1, 2, 3, 4, 5, 6])
     const [userName, setUserName] = useState('')
     const [loading, setLoading] = useState(true)
-    const [items, setItems] = useState([]);
+    // const [items, setItems] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -67,7 +65,7 @@ const ListaOpciones = () => {
                             <OptionElement title="Ver Cuotas del Mes" route="/regla3" />
                             <OptionElement title="Registrar un pago con tarjeta de Crédito" route="/register-credit-car" />
                             <OptionElement title="Calculadora de interés compuesto" route="/calcu-int-comp" />
-                            <OptionElement title="Calculadora de regla de 3" route="/regla3" />
+                            {/* <OptionElement title="Calculadora de regla de 3" route="/regla3" /> */}
                         </div>
                     </div>
                 )

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { auth, db } from '../configs.js'
+import { auth } from '../configs.js'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { doc, setDoc } from "firebase/firestore";
 import { useState, useEffect } from 'react'
 import SimpleSpinner from '../components/miniComponents/simpleSpinner'
 

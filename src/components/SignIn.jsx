@@ -1,12 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react'
-
 import { auth, provider, db } from '../configs.js'
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { signInWithPopup } from 'firebase/auth';
-import { doc, setDoc, collection, getDocs } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 
 

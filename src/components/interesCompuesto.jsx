@@ -37,7 +37,7 @@ const InteresCompuesto = () => {
 
 
         <>
-            <div className="border-8 border-black p-6 min-h-screen">
+            <div className=" border-black p-6 min-h-screen ">
                 <div className='border-4 border-red-300 p-2'>
                     <h2 className='text-2xl text-center'>
                         Calcula el interes compuesto

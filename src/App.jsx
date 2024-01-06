@@ -1,9 +1,4 @@
-import MiComponente from './components/Hola';
 import './App.css';
-import { Contador } from './components/contador';
-import Listado from './components/listado';
-import Temperatura from './components/Temperatura';
-import Formulario from './components/Formulario'
 import Registrador from './components/Registrador';
 import SignIn from './components/SignIn';
 import InteresCompuesto from './components/interesCompuesto';
@@ -11,12 +6,10 @@ import ReglaTres from './components/reglaTres';
 import RegistradorTC from './components/registradorTC'
 import Movimientos from './components/movimientos'
 
-import React, { Fragment, useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter,
-  Switch,
   Route,
-  Link,
   Routes
 } from 'react-router-dom'
 import SignUp from './components/SignUp';
